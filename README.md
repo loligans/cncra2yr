@@ -11,8 +11,6 @@ Note: The container's default user is named `commander` and the password is `lol
 ```shell
 sudo docker run -it \
                 --rm \
-                --device /dev/snd \
-                --device /dev/bus/usb \
                 --device /dev/dri/renderD128:/dev/dri/renderD128 \
                 -v /run/user/$(id -u)/pulse:/run/user/1000/pulse:ro \
                 -e XDG_RUNTIME_DIR=/tmp \
@@ -29,9 +27,7 @@ sudo docker run -it \
 ```
 
 ### Audio Support
-The following devices are needed in order for audio to work and also the RA2 start menu to not crash.  
-`--device /dev/snd`  
-`--device /dev/bus/usb`  
+We need to pass the pulseaudio socket into the container in order for audio to work and also the RA2 start menu to not crash.  
 `-v /run/user/$(id -u)/pulse:/run/user/1000/pulse`
 
 ### 3D Acceleration
